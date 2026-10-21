@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
 
@@ -20,11 +20,10 @@
         overflow: hidden;
       }
 
-      /* Wrapper global centré */
       .wrapper {
         width: 100%;
-        max-width: 1024px;
-        height: 100;
+        max-width: 480px;
+        height: 110px;
         margin: 0 auto;
         display: flex;
         justify-content: center;
@@ -45,48 +44,117 @@
 
       .TPLG-mid {
         position: relative;
-        flex: 0 0 480px;
+        flex: 0 0 320px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        height: 250px;
+        height: 110px;
         z-index: 2;
       }
 
+      /* LOGO : visible de 0 à 3 secondes */
       .TPLG-mid .logo-title-container {
         width: 100%;
-        height: fit-content;
-        padding: 10px 10px 0 10px;
+        min-height: 110px;
+        padding: 10px;
         box-sizing: border-box;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-      }
-
-      .TPLG-mid .sticker,
-      .TPLG-mid .logo-title-container .txt1 {
-        opacity: 0;
-        animation: alternance 2s infinite;
-      }
-
-      .TPLG-mid .sticker {
         position: absolute;
-        height: 100px;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        animation: afficher-logo 15s infinite;
+      }
+
+      @keyframes afficher-logo {
+        0%,
+        19.99% {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        20%,
+        100% {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      .TPLG-mid .logo-title-container .TPLG-LOGO {
+        height: 76px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: entree-sortie 3s ease-in-out infinite;
+      }
+
+      @keyframes entree-sortie {
+        0% {
+          top: -76px;
+          opacity: 0;
+        }
+
+        25% {
+          top: 15px;
+          opacity: 1;
+        }
+
+        75% {
+          top: 15px;
+          opacity: 1;
+        }
+
+        100% {
+          top: 110px;
+          opacity: 0;
+        }
+      }
+
+      /* CARROUSEL : visible de 3 à 15 secondes */
+      .TPLG-mid .carousel-text-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        animation: afficher-carrousel 15s infinite;
+      }
+
+      @keyframes afficher-carrousel {
+        0%,
+        19.99% {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        20%,
+        99.99% {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        100% {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      .TPLG-mid .carousel-text-container .sticker {
+        opacity: 0;
+        animation: alternance 1.5s infinite;
+      }
+
+      .TPLG-mid .carousel-text-container .sticker {
+        position: absolute;
+        height: 50px;
         top: 0;
         right: 10px;
         animation-delay: 0s;
-      }
-
-      .TPLG-mid .logo-title-container .txt1 {
-        font-size: 40px;
-        text-align: right;
-        font-weight: bold;
-        color: white;
-        margin: 0;
-        line-height: 80%;
-        animation-delay: 1s;
       }
 
       @keyframes alternance {
@@ -106,34 +174,21 @@
         }
       }
 
-      .TPLG-mid .logo-title-container .txt2 {
-        font-size: 32px;
-      }
-
-      .TPLG-mid .carousel-text-container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        padding: 0 20px 10px 20px;
-        box-sizing: border-box;
-        animation: rotateText 20s infinite;
-        animation-timing-function: ease-in-out;
-      }
-
+      /* Chaque slide occupe 3 secondes */
       .TPLG-mid .carousel-text-container > div {
         position: absolute;
         inset: 0;
         opacity: 0;
-        animation: carousel 12s infinite;
+        animation: carousel 15s infinite;
       }
 
       @keyframes carousel {
         0%,
-        25% {
+        19.99% {
           opacity: 1;
         }
 
-        25.01%,
+        20%,
         100% {
           opacity: 0;
         }
@@ -146,12 +201,25 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: end;
+        animation-delay: 3s;
+        box-sizing: border-box;
+        padding-bottom: 10px;
+      }
+
+      .TPLG-mid .carousel-text-container .slide-1-2 {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
-        animation-delay: 0s !important;
+        animation-delay: 0s;
       }
 
       .TPLG-mid .carousel-text-container .slide-1 p {
-        font-size: 36px;
+        font-size: 20px;
         text-align: center;
         font-weight: bold;
         line-height: 100%;
@@ -165,12 +233,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        animation-delay: 3s !important;
+        justify-content: end;
+        animation-delay: 9s;
+        box-sizing: border-box;
+        padding-bottom: 20px;
       }
 
       .TPLG-mid .carousel-text-container .slide-2 p {
-        font-size: 36px;
+        font-size: 20px;
         text-align: center;
         font-weight: bold;
         line-height: 100%;
@@ -183,8 +253,10 @@
         height: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        column-gap: 20px;
-        animation-delay: 6s !important;
+        column-gap: 10px;
+        animation-delay: 6s;
+        padding-bottom: 20px;
+        box-sizing: border-box;
       }
 
       .TPLG-mid .carousel-text-container .slide-3 .produit {
@@ -193,12 +265,12 @@
         display: flex;
         flex-direction: row;
         justify-content: end;
-        align-items: center;
+        align-items: end;
       }
 
       .TPLG-mid .carousel-text-container .slide-3 .produit .txt1 {
         color: white;
-        font-size: 36px;
+        font-size: 20px;
         font-weight: bold;
         text-align: right;
         line-height: 80%;
@@ -206,7 +278,7 @@
       }
 
       .TPLG-mid .carousel-text-container .slide-3 .produit .txt2 {
-        font-size: 24px;
+        font-size: 13.3px;
       }
 
       .TPLG-mid .carousel-text-container .slide-3 .prix {
@@ -216,12 +288,12 @@
         flex-direction: column;
         position: relative;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: end;
       }
 
       .TPLG-mid .carousel-text-container .slide-3 .prix .txt3 {
         color: #f2ff00;
-        font-size: 36px;
+        font-size: 20px;
         font-weight: bold;
         text-align: left;
         line-height: 120%;
@@ -229,14 +301,14 @@
       }
 
       .TPLG-mid .carousel-text-container .slide-3 .prix .txt4 {
-        font-size: 64px;
+        font-size: 35.5px;
       }
 
       .TPLG-mid .carousel-text-container .slide-3 .prix .txt5 {
-        font-size: 17px;
+        font-size: 9.44px;
         color: white;
         position: absolute;
-        top: 120px;
+        top: 850px;
         margin: 0;
       }
 
@@ -246,14 +318,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        animation-delay: 9s !important;
+        justify-content: end;
+        animation-delay: 12s;
+        padding-bottom: 20px;
+        box-sizing: border-box;
       }
 
       .TPLG-mid .carousel-text-container .slide-4 p {
         margin: 0;
         color: white;
-        font-size: 32px;
+        font-size: 17.77px;
         font-weight: bold;
       }
 
@@ -263,17 +337,12 @@
         z-index: 2;
         display: flex;
         flex-direction: column;
-        flex: 0 0 272px;
+        flex: 0 0 80px;
         box-sizing: border-box;
-      }
-
-      .TPLG-left,
-      .TPLG-right {
         justify-content: center;
         align-items: center;
       }
 
-      /* -------------------  Carousel Text --------------- */
       .TPLG-text-carousel-container {
         margin: 0;
         width: 100%;
@@ -284,10 +353,6 @@
         flex-direction: column;
         align-items: center;
         box-sizing: border-box;
-      }
-
-      .TPLG-LOGO {
-        height: 76px;
       }
 
       .TPLG-global-link {
@@ -303,19 +368,14 @@
 
   <body>
     <div class="wrapper">
-      <a
-        href="https://www.toutpourlegrain.fr/fr/contact"
-        target="_blank"
-        class="TPLG-global-link"
-      ></a>
       <img
         src="https://raw.githubusercontent.com/bttTPLG/img/refs/heads/main/asset/Ventilation-fond-1024x250.png"
         class="background-image"
+        alt=""
       />
-      <!-- Gauche -->
+
       <section class="TPLG-left"></section>
 
-      <!-- Milieu -->
       <section class="TPLG-mid">
         <div class="logo-title-container">
           <img
@@ -323,18 +383,21 @@
             alt="Logo Tout Pour Le Grain"
             class="TPLG-LOGO"
           />
+        </div>
+
+        <div class="carousel-text-container">
           <img
             src="https://raw.githubusercontent.com/bttTPLG/img/refs/heads/main/asset/sticker.png"
             alt="Destockage fin d'année"
             class="sticker"
           />
-          <p class="txt1">
-            Caniveau <br />
-            <span class="txt2">de ventilation</span>
-          </p>
-        </div>
-        <div class="carousel-text-container">
           <div class="slide-1">
+            <p>
+              OFFRE <br />
+              EXCEPTIONNELLE !
+            </p>
+          </div>
+          <div class="slide-1-2">
             <p>
               OFFRE <br />
               EXCEPTIONNELLE !
@@ -356,6 +419,7 @@
                 <span class="txt2">renforcée</span>
               </p>
             </div>
+
             <div class="prix">
               <p class="txt3">
                 A partir de <br />
@@ -369,12 +433,8 @@
             <p>Demandez votre devis !</p>
           </div>
         </div>
-
-        <!-- Carousel text -->
-        <div class="TPLG-text-carousel-container"></div>
       </section>
 
-      <!-- Droite -->
       <section class="TPLG-right"></section>
     </div>
   </body>
